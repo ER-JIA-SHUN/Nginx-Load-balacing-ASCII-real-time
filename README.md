@@ -152,10 +152,26 @@
       </body>
     </html>
     ```
-  - 存檔後，在 vscode 裡右鍵，選擇 "Open from Default Browser"
-    ![](https://i.imgur.com/N2v2imd.png =60%x)
+  - 再來，開啟檔案：style.css，貼入以下內容
+    ```
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #FFF;
+      /* color:#FFF; */
+      font-family: 'Courier';
+      font-size: 6pt;
+      line-height: 4pt;
+    }
+    
+    canvas {
+      display: block;
+    }
+    ```
+  - 存檔後，在 index.html 這個檔案裡右鍵，選擇 "Open from Default Browser"
+    ![](https://i.imgur.com/N2v2imd.png)
   - 到網頁裡，選擇 "允許使用相機"（用 VM 的話要照著前面步驟，先開啟攝影機）
-    ![](https://i.imgur.com/VMGr3RV.png =60%x)
+    ![](https://i.imgur.com/VMGr3RV.png)
   - Ta－Da～
     ![](https://i.imgur.com/HjnoTdZ.png)
 
