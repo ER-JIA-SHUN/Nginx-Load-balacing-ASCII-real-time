@@ -15,8 +15,6 @@
 - 圖像轉換（直接 apt install 套件）
   https://www.youtube.com/watch?v=9wFINaz7-I8&ab_channel=SSTecTutorials
 
-## Knowledge from Lecture
-
 ## Installation
 ### 虛擬機的前置設定
 - 虛擬機要額外安裝一個 Extension Pack 來開啓攝像頭
