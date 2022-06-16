@@ -116,9 +116,6 @@
       noCanvas();
       video = createCapture(VIDEO);
       video.size(275,110);
-      // 320,120
-      // (275,96)
-      // 250,48
       asciiDiv = createDiv();      
     }
     
