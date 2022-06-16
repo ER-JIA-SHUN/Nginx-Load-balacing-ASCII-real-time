@@ -148,10 +148,10 @@
       </body>
     </html>
     ```
-  - 存檔後，在 vscode 裡右鍵，選擇 "Open from Default Browser" 
-    ![](https://i.imgur.com/N2v2imd.png)
-  - 到網頁裡，選擇 "允許使用相機"（用 VM 的話要照著前面步驟，先開啟攝影機） 
-    ![](https://i.imgur.com/VMGr3RV.png)
+  - 存檔後，在 vscode 裡右鍵，選擇 "Open from Default Browser"
+    ![](https://i.imgur.com/N2v2imd.png =60%x)
+  - 到網頁裡，選擇 "允許使用相機"（用 VM 的話要照著前面步驟，先開啟攝影機）
+    ![](https://i.imgur.com/VMGr3RV.png =60%x)
   - Ta－Da～
 
 
@@ -168,3 +168,4 @@
 - Three algorithms for converting color to grayscale https://www.johndcook.com/blog/2009/08/24/algorithms-convert-color-grayscale/
 - W3 調色盤 https://www.w3.org/TR/css3-color/#svg-color
 - Ascii art 的density參考來源 https://play.ertdfgcvb.xyz/
+- ASCII Video - The Coding Train https://www.youtube.com/watch?v=55iwMYv8tGI&ab_channel=TheCodingTrain
