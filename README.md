@@ -181,6 +181,8 @@
 - 攝像頭拍攝圖像轉換（漸層彩色）余嘉舜
 - 動態的攝影機畫面轉Ascii art 蔡清寶
 - github 編寫 5/5 平分
+## 感謝名單
+- 沈佳龍
 ## References
 - 期末報告的模板 https://github.com/NCNU-OpenSource/final-project-readme-template/tree/master/template
 - 攝像頭拍攝圖像轉換（漸層彩色）https://wshanshan.github.io/python/asciiart/
