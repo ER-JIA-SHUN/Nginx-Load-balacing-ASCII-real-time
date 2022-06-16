@@ -46,6 +46,18 @@
     ![](https://i.imgur.com/LghUhA0.png)
 ## Usage
 ###  攝像頭拍攝圖像轉換（漸層彩色）
+-  photo.py 的程式，（注意裏頭路進設置）
+    執行程式
+![](https://i.imgur.com/vRrIFZ6.png)
+- 這是三個顏色是 （紅 "red" , 綠 "green" , 白 "white"） 
+    第一個顔色漸層到第二個顔色，而最後一個顔色為背景顔色
+![](https://i.imgur.com/EkpOS1t.png)
+- 顔色可以根據需求自己調色
+    這裏是調你要的漸層色
+![](https://i.imgur.com/FtewDVW.png)
+    這裏是 function 呼叫改背景顔色 bgcolor (function 的 默認設定是由黑至藍)
+![](https://i.imgur.com/qk8iwsV.png)
+- 接著就可以在指定好的路徑看見圖片啦，圖片通常會在你執行 local 路徑裏面找到
 - 主程式 main 
    - VideoCaupture 開其攝像頭
    - set (WIDTH) 設定視窗寬度
@@ -65,18 +77,6 @@
     - 根據標準化後的灰度平均演算法去對應光暗的表去做鋪色
     - 用回原來的大小產生一張新的圖片
 ![](https://i.imgur.com/GSOhc0V.png)
-- 去複製 photo.py 的程式，（注意裏頭路進設置）
-    跑程式去拍攝
-![](https://i.imgur.com/vRrIFZ6.png)
-- 這是三個顏色是 （紅 "red" , 綠 "green" , 白 "white"） 
-    第一個顔色漸層到第二個顔色，而最後一個顔色為背景顔色
-![](https://i.imgur.com/EkpOS1t.png)
-- 顔色可以根據需求自己調色
-    這裏是調你要的漸層色
-![](https://i.imgur.com/FtewDVW.png)
-    這裏是 function 呼叫改背景顔色 bgcolor (function 的 默認設定是由黑至藍)
-![](https://i.imgur.com/qk8iwsV.png)
-- 接著就可以在指定好的路徑看見圖片啦，圖片通常會在你執行 local 路徑裏面找到
 ### 動態的攝影機畫面轉 Ascii art
 - 流程
   - 首先在你喜歡的位置開一個資料夾
