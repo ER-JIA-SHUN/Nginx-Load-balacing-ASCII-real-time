@@ -110,7 +110,8 @@
           //const density = ' .,:irs?@9B&#'
         let video;
         let asciiDiv;
-    
+        
+    // 開啟一個攝影機、並看到預覽
     function setup() {
       noCanvas();
       video = createCapture(VIDEO);
@@ -124,24 +125,31 @@
     
     function draw() {
       video.loadPixels();
+      // 要印出的結果
       let asciiImage = '';
       for (let j = 0; j < video.height;j++) {
         for (let i = 0;i < video.width; i++) {
+          // pixelIndex = (r,g,b,alpha) alpha：處理透明度(此處不考慮)
           const pixelIndex = (i + j * video.width)     * 4;
+          // 抓取單一像素的 RGB 數值，rgb 數字越大越亮。 (0,0,0)->黑；(255,255,255)->白
           const r = video.pixels[pixelIndex + 0];
           const g = video.pixels[pixelIndex + 1];
           const b = video.pixels[pixelIndex + 2];
+          // 為了知道該給這格pixel什麼樣的 ascii 符號 (有怎樣的亮度)，固取平均值
           const avg = (r + g + b) / 3;
           const len = density.length;
-          const charIndex =     floor(map(avg,0,255,len,0));
+          // 將該 pixel 的亮度，由 0~255，投到 0 ~ density.length中，來找出該用哪一個 ascii 符號來代表這格pixel
+          const charIndex = floor(map(avg,0,255,len,0));
           //const charIndex =     floor(map(avg,0,255,0,len));
           
+          // 確保空格能夠正確的被印出來
           const c = density.charAt(charIndex);
           if (c == " ") asciiImage += "&nbsp;";
           else asciiImage += c;
         }
         asciiImage  += '<br/>';
       }
+      // 刷新含有儲存 ascii art 的 div
       asciiDiv.html(asciiImage);
     }
         </script>
@@ -149,15 +157,14 @@
     </html>
     ```
   - 存檔後，在 vscode 裡右鍵，選擇 "Open from Default Browser"
-    ![](https://i.imgur.com/N2v2imd.png)
+    ![](https://i.imgur.com/N2v2imd.png =60%x)
   - 到網頁裡，選擇 "允許使用相機"（用 VM 的話要照著前面步驟，先開啟攝影機）
-    ![](https://i.imgur.com/VMGr3RV.png)
+    ![](https://i.imgur.com/VMGr3RV.png =60%x)
   - Ta－Da～
-
+    ![](https://i.imgur.com/HjnoTdZ.png)
 
  
-     
-    
+         
 ## Job Assignment
 - 攝像頭拍攝圖像轉換（漸層彩色）余嘉舜
 - 動態的攝影機畫面轉Ascii art 蔡清寶
