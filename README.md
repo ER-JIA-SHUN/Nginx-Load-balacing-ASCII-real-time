@@ -140,7 +140,6 @@
           const len = density.length;
           // 將該 pixel 的亮度，由 0~255，投到 0 ~ density.length中，來找出該用哪一個 ascii 符號來代表這格pixel
           const charIndex = floor(map(avg,0,255,len,0));
-          //const charIndex =     floor(map(avg,0,255,0,len));
           
           // 確保空格能夠正確的被印出來
           const c = density.charAt(charIndex);
