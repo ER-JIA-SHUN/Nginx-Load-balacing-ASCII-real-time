@@ -1,8 +1,7 @@
 # ACSII_REAL_TIME_OR_PHOTO
 
 ## Concept Development
-- 每次看駭客電影中，將自己轉換成為 code 的樣子感覺這玩意好酷哦
-- 所以我們嘗試 Real-time 轉換和 圖像轉換
+- 每次看駭客電影中，將自己轉換成為 code 的樣子感覺這玩意好酷哦，所以想我們嘗試看看：相片的圖像轉換，以及 Real-time 的畫面轉換
 
 ## Implementation Resources
 - Python
@@ -47,7 +46,7 @@
 -  photo.py 的程式，（注意裏頭路進設置）
     執行程式
 ![](https://i.imgur.com/vRrIFZ6.png)
-- 這是三個顏色是 （紅 "red" , 綠 "green" , 白 "white"） 
+- 這是三個顏色是 （紅 "red" ， 綠 "green" ， 白 "white"） 
     第一個顔色漸層到第二個顔色，而最後一個顔色為背景顔色
 ![](https://i.imgur.com/EkpOS1t.png)
 - 顔色可以根據需求自己調色
