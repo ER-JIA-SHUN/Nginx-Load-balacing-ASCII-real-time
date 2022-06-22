@@ -1,12 +1,19 @@
-# ACSII_REAL_TIME_OR_PHOTO
-
+# Nginx Load balacing ASCII real-time
+[TOC]
 ## Concept Development
-- 每次看駭客電影中，將自己轉換成為 code 的樣子感覺這玩意好酷哦，所以想我們嘗試看看：相片的圖像轉換，以及 Real-time 的畫面轉換
+- 每次看駭客電影中，將自己轉換成為 code 的樣子感覺這玩意好酷哦！所以我們想嘗試看看：相片的圖像轉換，以及 Real-time 的畫面轉換
+    ![](https://i.imgur.com/hpbHEms.jpg)
+
+- 所以我們想弄一個 Real-time 轉換成為 code 的樣子，把該服務假設在 Nginx Web Server 上再由 Nginx 去做一 Load balancing 服務資源
+![](https://i.imgur.com/8yVcFpI.png)
+- DEMO 環節
+[影片連結點我](https://drive.google.com/file/d/1XA2AYVIKD9lGg15OxQYGUp4FH1F4FA9e/view?usp=sharing)
+
 
 ## Implementation Resources
-- Python
-- JS
-- Html
+- JavaScript
+- HTML
+- Nginx
 
 ## Existing Library/Software
 - 文字圖像轉換（github）
@@ -15,85 +22,43 @@
   https://www.youtube.com/watch?v=9wFINaz7-I8&ab_channel=SSTecTutorials
 
 ## Installation
-### 虛擬機的前置設定
 - 虛擬機要額外安裝一個 Extension Pack 來開啓攝像頭
 ![](https://i.imgur.com/QCNpZES.png)
 - 去打勾啓動攝像頭
 ![](https://i.imgur.com/IpJrVJZ.png)
 
-### （1）攝像頭拍攝圖像轉換（漸層彩色）
-打開 Terinal 去安裝一下套件包
-  
-    pip3 install colour
-    pip3 install pillow
-    pip3 install numpy
-    pip3 install opencv-python
+- 先更新一下軟件
 
-
-### （2）動態的攝影機畫面轉 Ascii art
-    編寫環境: Virtual Studio Code
-    使用語言: Html、一些些CSS
+        sudo apt update
+        sudo apt upgrade
     
-- 進到 vscode 裡面，下載這些延伸模組：
-    - p5.vscode
-    ![](https://i.imgur.com/w3qVJk8.png)
-    - HTML CSS Support
-    ![](https://i.imgur.com/w1RsWs9.png)
-    - Open In Default Browser
-    ![](https://i.imgur.com/LghUhA0.png)
-## Usage
-###  攝像頭拍攝圖像轉換（漸層彩色）
--  photo.py 的程式，（注意裏頭路進設置）
-    執行程式
-![](https://i.imgur.com/vRrIFZ6.png)
-- 這是三個顏色是 （紅 "red" ， 綠 "green" ， 白 "white"） 
-    第一個顔色漸層到第二個顔色，而最後一個顔色為背景顔色
-![](https://i.imgur.com/EkpOS1t.png)
-- 顔色可以根據需求自己調色
-    這裏是調你要的漸層色
-![](https://i.imgur.com/FtewDVW.png)
-    這裏是 function 呼叫改背景顔色 bgcolor (function 的 默認設定是由黑至藍)
-![](https://i.imgur.com/qk8iwsV.png)
-- 接著就可以在指定好的路徑看見圖片啦，圖片通常會在你執行 local 路徑裏面找到
-- 主程式 main 
-   - VideoCaupture 開其攝像頭
-   - set (WIDTH) 設定視窗寬度
-   - set (HEIGHT) 設定視窗高度
-   - imshow 輸出視窗
-   - imwrite 產生圖片
-![](https://i.imgur.com/mJeLSUl.png)
-- 副程式 function 
-    - resize 圖片（3寬：4高），計算有多少個 pixel
-    - 去計算現需要多少個 ASCII letters
-        - widthByLetter = round(img.size[0] * pixel_sampling * WCF) 
-        - heightByLetter = round(img.size[1] * pixel_sampling)
-    - 把獲取到的每一個 index RGB 用 John D. Cook 的顏色轉換為灰度的平均演算法，然後吧值標準化
-![](https://i.imgur.com/HVKb26a.png)
-    - 這個由白色（亮）至黑色（暗）說選擇的符號
-![](https://i.imgur.com/AdZpAad.png)
-    - 根據標準化後的灰度平均演算法去對應光暗的表去做鋪色
-    - 用回原來的大小產生一張新的圖片
-![](https://i.imgur.com/GSOhc0V.png)
-### 動態的攝影機畫面轉 Ascii art
-- 流程
-  - 首先在你喜歡的位置開一個資料夾
-    ``` 
-    mkdir Ascii
+- 下載 Nginx
+
+        sudo apt-get install nginx
+   
+- 下載 p5.js 檔案
+[點擊這裡](https://p5js.org/download/)
+![](https://i.imgur.com/lK0DAYS.png)
+
+
+## Implementation Process
+- 首先在你喜歡的位置開一個資料夾存放網頁資料
     ```
-  - 到 vscode 把剛剛新建的資料夾拉入工作區
-    ![](https://i.imgur.com/IC5WktK.png)
-  - 在剛拉過來的工作區中按下 Ctrl + Shift + P ，並選擇 Create p5.js Project，並選擇當前的資料夾。
-    ![](https://i.imgur.com/agBm1DA.png)
-    ![](https://i.imgur.com/w47HfvY.png)
-  - 回到 vscode，選取 index.html 貼入以下程式碼
+    1. cd /var/www
+    2. mkdir lsa
+    3. sudo vim ascii_1.html
+    ```
+
+    - 貼以下 HTML 的程式碼
+
     ```
     <!DOCTYPE html>
     <html lang="en">
       <head>
         <link rel="stylesheet" type="text/css"     href="style.css">
-        <script     src="https://cdnjs.cloudflare.com/ajax/libs/p5    .js/1.4.0/p5.js"></script>
-        <script     src="https://cdnjs.cloudflare.com/ajax/libs/p5    .js/1.4.0/addons/p5.sound.min.js"></script>
+        <script     src="p5.js"></script>
         <meta charset="utf-8" />
+        <h1>This Is Server 1.</h1>
       </head>
       <body>
         
@@ -137,6 +102,7 @@
           // 將該 pixel 的亮度，由 0~255，投到 0 ~ density.length中，來找出該用哪一個 ascii 符號來代表這格pixel
           const charIndex = floor(map(avg,0,255,len,0));
           
+          
           // 確保空格能夠正確的被印出來
           const c = density.charAt(charIndex);
           if (c == " ") asciiImage += "&nbsp;";
@@ -151,7 +117,13 @@
       </body>
     </html>
     ```
-  - 再來，開啟檔案：style.css，貼入以下內容
+    
+    - 複製多一個 HTML 給第二個 web server 用，（記得把裡面的 h1 改成 This Is Web Server 2.）
+    ```
+    4. sudo cp ascii_1.html ascii_2.html
+    5. sudo vim style.css
+    ```
+    - 貼以下 CSS 的程式碼
     ```
     html, body {
       margin: 0;
@@ -161,31 +133,104 @@
       font-family: 'Courier';
       font-size: 6pt;
       line-height: 4pt;
+      color: blue;
     }
     
     canvas {
       display: block;
     }
     ```
-  - 存檔後，在 index.html 這個檔案裡右鍵，選擇 "Open from Default Browser"
-    ![](https://i.imgur.com/N2v2imd.png)
-  - 到網頁裡，選擇 "允許使用相機"（用 VM 的話要照著前面步驟，先開啟攝影機）
-    ![](https://i.imgur.com/VMGr3RV.png)
-  - Ta－Da～
-    ![](https://i.imgur.com/HjnoTdZ.png)
+    - 從 Download 的檔案裡面把 p5.js 放入 /var/www/lsa
+    ```
+    6. cd /Downloads
+    7. sudo mv p5.js /var/www/lsa
+    ```
+    - 去 Nginx 架設一個 Load Balancer 和兩個 Web Servers
+    ```
+    8. cd /etc/nginx/sites-available
+    9. sudo vim loadbalancer.conf
+    ``` 
+    - 貼以下程式碼
+    ```
+    upstream lsa{
+        random;
+        server localhost:8081;
+        server localhost:8082;
+    }
+    server{
+        listen 8080;
+        listen [::]:8080;
+        
+        location / {
+            proxy_pass http://lsa;
+        }
+    }
+    ```
+    ```
+    10. sudo vim lsa_1.conf
+    ``` 
+    - 貼以下程式碼
+    ```
+    server{
+        listen 8081;
+        listen [::]:8081;
+        
+        root /var/www/lsa;
+        index ascii_1.html
+        
+        location / {
+            try_files $uri $uri/ =404;
+        }
+    }
+    ```
+    ```
+    11. sudo vim lsa_2.conf
+    ``` 
+    - 貼以下程式碼
+    ```
+    server{
+        listen 8082;
+        listen [::]:8082;
+        
+        root /var/www/lsa;
+        index ascii_2.html
+        
+        location / {
+            try_files $uri $uri/ =404;
+        }
+    }
+    ```
+    - 把 loadbalancer.conf 和兩個 Web Server.conf Softlink 到 /etc/nginx/sities-enabled
+    ```
+    12. sudo ln -s /etc/nginx/sites-available/loadbalancer.conf /etc/nginx/sites-enabled
+    13. sudo ln -s /etc/nginx/sites-available/lsa_1.conf /etc/nginx/sites-enabled
+    14. sudo ln -s /etc/nginx/sites-available/lsa_2.conf /etc/nginx/sites-enabled
+    15. sudo service nginx restart
+    ``` 
+    - 開啓網頁輸入 127.0.0.1:8080 (loadBalancer) 點擊 Allow
+![](https://i.imgur.com/OJ7azCK.png)
 
- 
-         
+    - Ta Da~ 大功告成~
+![](https://i.imgur.com/Nf0wA0q.png)
+
+## Usage
+- 主要還是用於興趣開發的範疇，沒有什麽特別的商業價值
+- 可用於視頻中做一個濾鏡特效
+
+## 碰到的問題
+- 因爲 p5.js 的套件它只能在本地端 localhost 下可以使用 getusermedia, 到了其他的私人 ip 下它無法使用即使對 Web Browser 手動開起攝像頭或是權限都無法根治 
+    - 問題: "navigator.mediaDevices.getUserMedia is not implemented in this browser"
+    - 嘗試寫了一個 navigator.mediaDevices.getUserMedia 的 Web APIs 也沒被辦法啟用
+
 ## Job Assignment
-- 攝像頭拍攝圖像轉換（漸層彩色）余嘉舜
-- 動態的攝影機畫面轉Ascii art 蔡清寶
+- Nginx Web Server & Load Balancer：余嘉舜
+- 動態的攝影機畫面轉 Ascii art：蔡清寶
 - github 編寫 5/5 平分
+
 ## 感謝名單
-- 資管三　沈佳龍　同學
+- 資管三 沈佳龍 同學
 ## References
 - 期末報告的模板 https://github.com/NCNU-OpenSource/final-project-readme-template/tree/master/template
-- 攝像頭拍攝圖像轉換（漸層彩色）https://wshanshan.github.io/python/asciiart/
-- Three algorithms for converting color to grayscale https://www.johndcook.com/blog/2009/08/24/algorithms-convert-color-grayscale/
 - W3 調色盤 https://www.w3.org/TR/css3-color/#svg-color
 - Ascii art 的density參考來源 https://play.ertdfgcvb.xyz/
 - ASCII Video - The Coding Train https://www.youtube.com/watch?v=55iwMYv8tGI&ab_channel=TheCodingTrain
