@@ -4,10 +4,9 @@
     ![](https://i.imgur.com/hpbHEms.jpg)
 
 - 所以我們想弄一個 Real-time 轉換成為 code 的樣子，把該服務假設在 Nginx Web Server 上再由 Nginx 去做一 Load balancing 服務資源
-![](https://i.imgur.com/8yVcFpI.png)
+![](https://i.imgur.com/A555zVj.png)
 - DEMO 環節
 [影片連結點我](https://drive.google.com/file/d/1XA2AYVIKD9lGg15OxQYGUp4FH1F4FA9e/view?usp=sharing)
-
 
 ## Implementation Resources
 - JavaScript
