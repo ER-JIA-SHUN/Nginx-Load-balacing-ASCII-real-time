@@ -1,5 +1,4 @@
 # Nginx Load balacing ASCII real-time
-[TOC]
 ## Concept Development
 - 每次看駭客電影中，將自己轉換成為 code 的樣子感覺這玩意好酷哦！所以我們想嘗試看看：相片的圖像轉換，以及 Real-time 的畫面轉換
     ![](https://i.imgur.com/hpbHEms.jpg)
