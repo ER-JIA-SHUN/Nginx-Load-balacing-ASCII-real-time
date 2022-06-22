@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css"     href="style.css">
+    <script     src="p5.js"></script>
     <meta charset="utf-8" />
+    <h1>This Is Server 1.</h1>
   </head>
   <body>
     
@@ -13,26 +13,22 @@
     <script>
       //const density = '           .:░▒▓█'
       //const density = '█▓▒░:.         '
-      //const density = '            .:-i|=+%O#@'
-      //const density = '@#O%+=|i-:.            '
-      const density = '                               _.,-=+:;cba!?0123456789$W#@Ñ'
-      //const density = 'Ñ@#W$9876543210?!abc;:+=-,._                                                   '
+      //const density = '            .:-    i|=+%O#@'
+      //const density = '@#O%+=|i-:.                '
+      const density = '                                                       _.,-=+:;cba!?0123456789$W#@Ñ'
+      //const density = 'Ñ@#W$9876543210?!abc;:+=-,._                                                       '
       //const density = ' .,:irs?@9B&#'
     let video;
     let asciiDiv;
-
+    
 // 開啟一個攝影機、並看到預覽
 function setup() {
   noCanvas();
   video = createCapture(VIDEO);
   video.size(275,110);
-  // 320,120
-  // (275,96)
-  // 250,48
-  asciiDiv = createDiv();
-  
-  
+  asciiDiv = createDiv();      
 }
+
 
 function draw() {
   video.loadPixels();
@@ -41,7 +37,7 @@ function draw() {
   for (let j = 0; j < video.height;j++) {
     for (let i = 0;i < video.width; i++) {
       // pixelIndex = (r,g,b,alpha) alpha：處理透明度(此處不考慮)
-      const pixelIndex = (i + j * video.width) * 4;
+      const pixelIndex = (i + j * video.width)     * 4;
       // 抓取單一像素的 RGB 數值，rgb 數字越大越亮。 (0,0,0)->黑；(255,255,255)->白
       const r = video.pixels[pixelIndex + 0];
       const g = video.pixels[pixelIndex + 1];
