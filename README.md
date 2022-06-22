@@ -217,7 +217,7 @@
 
 ## 碰到的問題
 - 因爲 p5.js 的套件它只能在本地端 localhost 下可以使用 getusermedia, 到了其他的私人 ip 下它無法使用即使對 Web Browser 手動開起攝像頭或是權限都無法根治 
-    - 問題: "navigator.mediaDevices.getUserMedia is not implemented in this browser"
+    - 問題: “getUserMedia is not implemented in this browser”
     - 嘗試寫了一個 navigator.mediaDevices.getUserMedia 的 Web APIs 也沒被辦法啟用
 
 ## Job Assignment
