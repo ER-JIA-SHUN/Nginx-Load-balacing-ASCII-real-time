@@ -7,9 +7,7 @@
 ![](https://i.imgur.com/A555zVj.png)
 
 - DEMO 環節
-:::info
 [影片連結點我](https://drive.google.com/file/d/1XA2AYVIKD9lGg15OxQYGUp4FH1F4FA9e/view?usp=sharing)
-:::
 
 ## Implementation Resources
 - JavaScript
