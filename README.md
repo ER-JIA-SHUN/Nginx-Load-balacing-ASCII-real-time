@@ -1,12 +1,15 @@
 # Nginx Load balacing ASCII real-time
 ## Concept Development
-- 每次看駭客電影中，將自己轉換成為 code 的樣子感覺這玩意好酷哦！所以我們想嘗試看看：相片的圖像轉換，以及 Real-time 的畫面轉換
+- 每次看駭客電影中，將自己轉換成為由 0 和 1 組成的圖像。感覺這玩意好酷哦！所以我們想嘗試看看：相片的圖像轉換，以及 Real-time 的畫面轉換
     ![](https://i.imgur.com/hpbHEms.jpg)
 
-- 所以我們想弄一個 Real-time 轉換成為 code 的樣子，把該服務假設在 Nginx Web Server 上再由 Nginx 去做一 Load balancing 服務資源
+- 所以我們想弄一個 real-time 將攝影機畫面轉換成為 Ascii Art 的樣子，把該服務架設在 Nginx Web Server 上再由 Nginx 去做 Load balancing 服務資源
 ![](https://i.imgur.com/A555zVj.png)
+
 - DEMO 環節
+:::info
 [影片連結點我](https://drive.google.com/file/d/1XA2AYVIKD9lGg15OxQYGUp4FH1F4FA9e/view?usp=sharing)
+:::
 
 ## Implementation Resources
 - JavaScript
@@ -47,7 +50,7 @@
     3. sudo vim ascii_1.html
     ```
 
-    - 貼以下 HTML 的程式碼
+- 在 ascii_1.html 裡面貼入以下的 HTML 程式碼，其中 h1 的內容為：This Is Server 1. 來代表第一個 Web Server
 
     ```
     <!DOCTYPE html>
@@ -116,12 +119,14 @@
     </html>
     ```
     
-    - 複製多一個 HTML 給第二個 web server 用，（記得把裡面的 h1 改成 This Is Web Server 2.）
+- 複製多一個 HTML 給第二個 web server 用。
+（再到 ascii_2.html 把裡面的 h1 改成 This Is Web Server 2. ，用以做出區分）
     ```
     4. sudo cp ascii_1.html ascii_2.html
-    5. sudo vim style.css
+    5. sudo vim ascii_2.html
+    6. sudo vim style.css
     ```
-    - 貼以下 CSS 的程式碼
+    - 貼入以下 CSS 的程式碼
     ```
     html, body {
       margin: 0;
@@ -138,17 +143,17 @@
       display: block;
     }
     ```
-    - 從 Download 的檔案裡面把 p5.js 放入 /var/www/lsa
+- 切到 Downloads 資料夾，把 Downloads 中的 p5.js 搬到 /var/www/lsa
     ```
-    6. cd /Downloads
-    7. sudo mv p5.js /var/www/lsa
+    7. cd /Downloads
+    8. sudo mv p5.js /var/www/lsa
     ```
-    - 去 Nginx 架設一個 Load Balancer 和兩個 Web Servers
+- 去 Nginx 架設一個 Load Balancer 和兩個 Web Servers
     ```
-    8. cd /etc/nginx/sites-available
-    9. sudo vim loadbalancer.conf
+    9. cd /etc/nginx/sites-available
+    10. sudo vim loadbalancer.conf
     ``` 
-    - 貼以下程式碼
+    - 貼入下程式碼 （loadbalancer.conf）
     ```
     upstream lsa{
         random;
@@ -165,9 +170,9 @@
     }
     ```
     ```
-    10. sudo vim lsa_1.conf
+    11. sudo vim lsa_1.conf
     ``` 
-    - 貼以下程式碼
+    - 貼入下程式碼 （lsa_1.conf）
     ```
     server{
         listen 8081;
@@ -182,9 +187,9 @@
     }
     ```
     ```
-    11. sudo vim lsa_2.conf
+    12. sudo vim lsa_2.conf
     ``` 
-    - 貼以下程式碼
+    - 貼入下程式碼 （lsa_2.conf）
     ```
     server{
         listen 8082;
@@ -198,26 +203,26 @@
         }
     }
     ```
-    - 把 loadbalancer.conf 和兩個 Web Server.conf Softlink 到 /etc/nginx/sities-enabled
+- 把 loadbalancer.conf 和兩個 Web Server.conf Softlink 到 /etc/nginx/sities-enabled
     ```
-    12. sudo ln -s /etc/nginx/sites-available/loadbalancer.conf /etc/nginx/sites-enabled
-    13. sudo ln -s /etc/nginx/sites-available/lsa_1.conf /etc/nginx/sites-enabled
-    14. sudo ln -s /etc/nginx/sites-available/lsa_2.conf /etc/nginx/sites-enabled
-    15. sudo service nginx restart
+    13. sudo ln -s /etc/nginx/sites-available/loadbalancer.conf /etc/nginx/sites-enabled
+    14. sudo ln -s /etc/nginx/sites-available/lsa_1.conf /etc/nginx/sites-enabled
+    15. sudo ln -s /etc/nginx/sites-available/lsa_2.conf /etc/nginx/sites-enabled
+    16. sudo service nginx restart
     ``` 
-    - 開啓網頁輸入 127.0.0.1:8080 (loadBalancer) 點擊 Allow
+- 開啓網頁輸入 127.0.0.1:8080 (loadBalancer) 點擊 Allow
 ![](https://i.imgur.com/OJ7azCK.png)
 
-    - Ta Da~ 大功告成~
+- Ta Da~ 大功告成~
 ![](https://i.imgur.com/Nf0wA0q.png)
 
 ## Usage
 - 主要還是用於興趣開發的範疇，沒有什麽特別的商業價值
-- 可用於視頻中做一個濾鏡特效
+- 可用於影片中做一個濾鏡特效
 
 ## 碰到的問題
-- 因爲 p5.js 的套件它只能在本地端 localhost 下可以使用 getusermedia, 到了其他的私人 ip 下它無法使用即使對 Web Browser 手動開起攝像頭或是權限都無法根治 
-    - 問題: “getUserMedia is not implemented in this browser”
+- 因爲 p5.js 的套件它只能在　localhost 底下使用 getUserMedia, 到了其他的私人 ip 下它無法使用 Web Browser 當中自動或手動開起攝影機的權限。 
+    - 問題: ＂getUserMedia is not implemented in this browser＂
     - 嘗試寫了一個 navigator.mediaDevices.getUserMedia 的 Web APIs 也沒被辦法啟用
 
 ## Job Assignment
@@ -227,6 +232,7 @@
 
 ## 感謝名單
 - 資管三 沈佳龍 同學
+
 ## References
 - 期末報告的模板 https://github.com/NCNU-OpenSource/final-project-readme-template/tree/master/template
 - W3 調色盤 https://www.w3.org/TR/css3-color/#svg-color
