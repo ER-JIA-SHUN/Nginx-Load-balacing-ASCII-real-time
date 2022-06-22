@@ -6,6 +6,7 @@ html, body {
   font-family: 'Courier';
   font-size: 6pt;
   line-height: 4pt;
+  color: blue;
 }
 
 canvas {
